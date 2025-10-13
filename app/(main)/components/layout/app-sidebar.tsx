@@ -1,6 +1,12 @@
 "use client";
 
-import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarHeader,
+} from "@/components/ui/sidebar";
+import { NavMain } from "./nav-main";
+import { navMainItems } from "../../constants";
 
 export const AppSidebar = ({
   ...props
@@ -11,9 +17,10 @@ export const AppSidebar = ({
       {...props}
       collapsible="icon"
     >
+      <SidebarHeader />
       <SidebarContent>
-        {/* <NavMain items={data.navMain} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
+        <NavMain items={navMainItems} />
+        {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
       </SidebarContent>
       {/* <SidebarFooter>
         <NavUser user={data.user} />
