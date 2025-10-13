@@ -3,10 +3,12 @@
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarHeader,
 } from "@/components/ui/sidebar";
 import { NavMain } from "./nav-main";
-import { navMainItems } from "../../constants";
+import { navMainItems, navSecondaryItems } from "@/app/(main)/constants";
+import { NavSecondary } from "./nav-secondary";
 
 export const AppSidebar = ({
   ...props
@@ -20,8 +22,9 @@ export const AppSidebar = ({
       <SidebarHeader />
       <SidebarContent>
         <NavMain items={navMainItems} />
-        {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
+        <NavSecondary items={navSecondaryItems} className="mt-auto" />
       </SidebarContent>
+      <SidebarFooter />
       {/* <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter> */}
