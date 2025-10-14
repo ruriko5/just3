@@ -1,6 +1,6 @@
 import { LogOutIcon } from "lucide-react";
 import { Button } from "./ui/button";
-import { signOut } from "@/auth/actions";
+import { signOut } from "@/app/auth/actions";
 import { cn } from "@/lib/utils";
 
 export const LogoutButton = ({ className }: React.ComponentProps<"form">) => {
