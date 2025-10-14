@@ -9,6 +9,7 @@ import {
 import { NavMain } from "./nav-main";
 import { navMainItems, navSecondaryItems } from "@/app/(main)/constants";
 import { NavSecondary } from "./nav-secondary";
+import { NavTertiary } from "./nav-tertiary";
 
 export const AppSidebar = ({
   ...props
@@ -23,6 +24,7 @@ export const AppSidebar = ({
       <SidebarContent>
         <NavMain items={navMainItems} />
         <NavSecondary items={navSecondaryItems} className="mt-auto" />
+        <NavTertiary />
       </SidebarContent>
       <SidebarFooter />
       {/* <SidebarFooter>
