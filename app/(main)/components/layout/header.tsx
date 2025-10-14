@@ -4,9 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useSidebar } from "@/components/ui/sidebar";
 import { SidebarIcon } from "lucide-react";
-import Link from "next/link";
 
-export const Header = () => {
+export const Header = ({ children }: { children: React.ReactNode }) => {
   const { toggleSidebar } = useSidebar();
 
   return (
@@ -23,10 +22,7 @@ export const Header = () => {
         <Separator orientation="vertical" className="mr-2 h-4" />
         <h1>Just 3</h1>
         <span className="flex-1"></span>
-
-        <Button>
-          <Link href={"/todos"}>Todos</Link>
-        </Button>
+        {children}
       </div>
     </header>
   );

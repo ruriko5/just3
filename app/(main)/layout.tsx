@@ -1,6 +1,7 @@
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Header } from "@/app/(main)/components/layout/header";
 import { AppSidebar } from "./components/layout/app-sidebar";
+import { HeaderMobileNav, HeaderNav } from "./components/layout/header-nav";
 
 export default function MainLayout({
   children,
@@ -10,7 +11,10 @@ export default function MainLayout({
   return (
     <div className="[--header-height:calc(--spacing(14))]">
       <SidebarProvider className="flex flex-col">
-        <Header />
+        <Header>
+          <HeaderMobileNav className="lg:hidden" />
+          <HeaderNav className="hidden lg:block" />
+        </Header>
         <div className="flex flex-1">
           <AppSidebar />
           <SidebarInset>
