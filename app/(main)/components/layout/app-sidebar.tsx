@@ -10,6 +10,7 @@ import { NavMain } from "./nav-main";
 import { navMainItems, navSecondaryItems } from "@/app/(main)/constants";
 import { NavSecondary } from "./nav-secondary";
 import { NavTertiary } from "./nav-tertiary";
+import { NavUser } from "./nav-user";
 
 export const AppSidebar = ({
   ...props
@@ -26,10 +27,9 @@ export const AppSidebar = ({
         <NavSecondary items={navSecondaryItems} className="mt-auto" />
         <NavTertiary />
       </SidebarContent>
-      <SidebarFooter />
-      {/* <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter> */}
+      <SidebarFooter>
+        <NavUser />
+      </SidebarFooter>
     </Sidebar>
   );
 };
