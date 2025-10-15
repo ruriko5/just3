@@ -11,7 +11,7 @@ import {
   signInAnonymously,
   signInWithGithub,
   signInWithGoogle,
-} from "@/auth/actions";
+} from "@/app/auth/actions";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 
 export function LoginForm({

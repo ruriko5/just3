@@ -1,4 +1,4 @@
-import { verifyUser } from "@/auth/data";
+import { verifyUser } from "@/app/auth/data";
 import { LogoutButton } from "@/components/logout-button";
 import Image from "next/image";
 

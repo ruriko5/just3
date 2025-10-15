@@ -1,4 +1,4 @@
-import { currentUser } from "@/auth/data";
+import { currentUser } from "@/app/auth/data";
 import { LoginForm } from "@/components/login-form";
 import { redirect } from "next/navigation";
 
