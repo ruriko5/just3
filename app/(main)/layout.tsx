@@ -2,6 +2,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Header } from "@/app/(main)/components/layout/header";
 import { AppSidebar } from "./components/layout/app-sidebar";
 import { HeaderMobileNav, HeaderNav } from "./components/layout/header-nav";
+import { HeaderUserMenu } from "./components/layout/header-user-menu";
 
 export default function MainLayout({
   children,
@@ -14,6 +15,7 @@ export default function MainLayout({
         <Header>
           <HeaderMobileNav className="lg:hidden" />
           <HeaderNav className="hidden lg:block" />
+          <HeaderUserMenu />
         </Header>
         <div className="flex flex-1">
           <AppSidebar />
