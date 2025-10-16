@@ -14,7 +14,7 @@ export type Database = {
           description: string | null;
           doneCreatedAt: string;
           id: number;
-          status: string;
+          status: "done";
           title: string;
           todoCreatedAt: string;
           userId: string;
@@ -24,7 +24,7 @@ export type Database = {
           description?: string | null;
           doneCreatedAt?: string;
           id?: number;
-          status?: string;
+          status?: "done";
           title: string;
           todoCreatedAt: string;
           userId?: string;
@@ -34,7 +34,7 @@ export type Database = {
           description?: string | null;
           doneCreatedAt?: string;
           id?: number;
-          status?: string;
+          status?: "done";
           title?: string;
           todoCreatedAt?: string;
           userId?: string;
@@ -46,7 +46,7 @@ export type Database = {
         Row: {
           description: string | null;
           id: number;
-          status: string;
+          status: "todo";
           title: string;
           todoCreatedAt: string;
           userId: string;
@@ -55,7 +55,7 @@ export type Database = {
         Insert: {
           description?: string | null;
           id?: number;
-          status?: string;
+          status?: "todo";
           title: string;
           todoCreatedAt?: string;
           userId?: string;
@@ -64,7 +64,7 @@ export type Database = {
         Update: {
           description?: string | null;
           id?: number;
-          status?: string;
+          status?: "todo";
           title?: string;
           todoCreatedAt?: string;
           userId?: string;
@@ -76,7 +76,7 @@ export type Database = {
         Row: {
           description: string | null;
           id: number;
-          status: string;
+          status: "wanna";
           title: string;
           userId: string;
           wannaCreatedAt: string;
@@ -84,7 +84,7 @@ export type Database = {
         Insert: {
           description?: string | null;
           id?: number;
-          status?: string;
+          status?: "wanna";
           title: string;
           userId?: string;
           wannaCreatedAt?: string;
@@ -92,7 +92,7 @@ export type Database = {
         Update: {
           description?: string | null;
           id?: number;
-          status?: string;
+          status?: "wanna";
           title?: string;
           userId?: string;
           wannaCreatedAt?: string;
