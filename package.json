@@ -6,7 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "supabase:restart": "pnpx supabase stop && pnpx supabase start",
+    "supabase:gen-types": "pnpx supabase gen types typescript --local --schema public > types/database.ts",
+    "supabase:gen-migration": "pnpx supabase db diff | pnpx supabase migration new",
+    "supabase:seed": "pnpx supabase db reset"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.10",
