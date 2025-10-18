@@ -28,6 +28,9 @@ import {
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
+import { useRouter } from "next/navigation";
+import { createTodo } from "../../todos/actions";
+import { toast } from "sonner";
 
 export const TaskAddForm = () => {
   const form = useForm<TaskFormData>({
@@ -39,8 +42,20 @@ export const TaskAddForm = () => {
     mode: "onChange",
   });
 
+  const router = useRouter();
+
   const onSubmit = (values: TaskFormData) => {
-    console.log("task", Math.floor(Math.random() * 1000));
+    return createTodo(values)
+      .then(() => {
+        form.reset();
+        router.refresh();
+        toast.success("Todo has been created", {
+          description: `${values.title}`,
+        });
+      })
+      .catch((e) => {
+        toast.error(`${e}`);
+      });
   };
 
   return (

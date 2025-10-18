@@ -3,6 +3,7 @@ import { Header } from "@/app/(main)/components/layout/header";
 import { AppSidebar } from "./components/layout/app-sidebar";
 import { HeaderMobileNav, HeaderNav } from "./components/layout/header-nav";
 import { HeaderUserMenu } from "./components/layout/header-user-menu";
+import { Toaster } from "@/components/ui/sonner";
 
 export default function MainLayout({
   children,
@@ -24,6 +25,7 @@ export default function MainLayout({
           </SidebarInset>
         </div>
       </SidebarProvider>
+      <Toaster richColors />
     </div>
   );
 }
