@@ -1,12 +1,15 @@
 "use client";
 
-import { TaskFormData, taskFormSchema } from "@/schemas/task-form-schema";
+import {
+  descMax,
+  TaskFormData,
+  taskFormSchema,
+} from "@/schemas/task-form-schema";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -21,7 +24,6 @@ import {
 } from "@/components/ui/input-group";
 import {
   Field,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
@@ -42,31 +44,28 @@ export const TaskAddForm = () => {
   };
 
   return (
-    <Card className="w-full sm:max-w-md">
+    <Card>
       <CardHeader>
-        <CardTitle>Bug Report</CardTitle>
-        <CardDescription>
-          Help us improve by reporting bugs you encounter.
-        </CardDescription>
+        <CardTitle>Add Task</CardTitle>
       </CardHeader>
-      <CardContent>
-        <form id="form-rhf-demo" onSubmit={form.handleSubmit(onSubmit)}>
+
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <CardContent>
           <FieldGroup>
             <Controller
               name="title"
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor="form-rhf-demo-title">
-                    Bug Title
+                  <FieldLabel className="flex flex-col items-start gap-3">
+                    Title
+                    <Input
+                      {...field}
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Login button not working on mobile"
+                      autoComplete="off"
+                    />
                   </FieldLabel>
-                  <Input
-                    {...field}
-                    id="form-rhf-demo-title"
-                    aria-invalid={fieldState.invalid}
-                    placeholder="Login button not working on mobile"
-                    autoComplete="off"
-                  />
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
@@ -78,28 +77,23 @@ export const TaskAddForm = () => {
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor="form-rhf-demo-description">
+                  <FieldLabel className="flex flex-col items-start gap-3">
                     Description
+                    <InputGroup>
+                      <InputGroupTextarea
+                        {...field}
+                        placeholder="I'm having an issue with the login button on mobile."
+                        rows={6}
+                        className="min-h-24 resize-none"
+                        aria-invalid={fieldState.invalid}
+                      />
+                      <InputGroupAddon align="block-end">
+                        <InputGroupText className="tabular-nums">
+                          {field.value.length}/{descMax} characters
+                        </InputGroupText>
+                      </InputGroupAddon>
+                    </InputGroup>
                   </FieldLabel>
-                  <InputGroup>
-                    <InputGroupTextarea
-                      {...field}
-                      id="form-rhf-demo-description"
-                      placeholder="I'm having an issue with the login button on mobile."
-                      rows={6}
-                      className="min-h-24 resize-none"
-                      aria-invalid={fieldState.invalid}
-                    />
-                    <InputGroupAddon align="block-end">
-                      <InputGroupText className="tabular-nums">
-                        {field.value.length}/100 characters
-                      </InputGroupText>
-                    </InputGroupAddon>
-                  </InputGroup>
-                  <FieldDescription>
-                    Include steps to reproduce, expected behavior, and what
-                    actually happened.
-                  </FieldDescription>
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
@@ -107,18 +101,25 @@ export const TaskAddForm = () => {
               )}
             />
           </FieldGroup>
-        </form>
-      </CardContent>
-      <CardFooter>
-        <Field orientation="horizontal">
-          <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
-          </Button>
-          <Button type="submit" form="form-rhf-demo">
-            Submit
-          </Button>
-        </Field>
-      </CardFooter>
+        </CardContent>
+        <CardFooter className="mt-6">
+          <Field orientation="horizontal">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => form.reset()}
+            >
+              Reset
+            </Button>
+            <Button
+              type="submit"
+              disabled={form.formState.isSubmitting || !form.formState.isValid}
+            >
+              Submit
+            </Button>
+          </Field>
+        </CardFooter>
+      </form>
     </Card>
   );
 };
