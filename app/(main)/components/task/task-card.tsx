@@ -11,6 +11,7 @@ import { Task } from "@/types/custom";
 import Link from "next/link";
 import { format, formatDistanceToNow } from "date-fns";
 import { ja } from "date-fns/locale";
+import { TaskDeleteDialog } from "./task-delete-dialog";
 
 export const TaskCard = ({ task }: { task: Task }) => {
   const genDateStr = (date: string) => {
@@ -58,6 +59,12 @@ export const TaskCard = ({ task }: { task: Task }) => {
             View more...
           </Link>
         </Button>
+
+        <div className="ml-auto">
+          <TaskDeleteDialog
+            props={{ id: task.id, title: task.title, status: task.status }}
+          />
+        </div>
       </CardFooter>
     </Card>
   );
