@@ -13,6 +13,7 @@ import { format, formatDistanceToNow } from "date-fns";
 import { ja } from "date-fns/locale";
 import { TaskDeleteDialog } from "./task-delete-dialog";
 import { TaskMigrateDialog } from "./task-migrate-dialog";
+import { TaskEditDialogForm } from "./task-edit-dialog-form";
 
 export const TaskCard = ({ task }: { task: Task }) => {
   const genDateStr = (date: string) => {
@@ -66,9 +67,19 @@ export const TaskCard = ({ task }: { task: Task }) => {
             props={{ id: task.id, title: task.title, status: task.status }}
           />
           {task.status === "done" || (
-            <TaskMigrateDialog
-              props={{ id: task.id, title: task.title, status: task.status }}
-            />
+            <>
+              <TaskEditDialogForm
+                props={{
+                  id: task.id,
+                  title: task.title,
+                  description: task.description,
+                  status: task.status,
+                }}
+              />
+              <TaskMigrateDialog
+                props={{ id: task.id, title: task.title, status: task.status }}
+              />
+            </>
           )}
         </div>
       </CardFooter>
