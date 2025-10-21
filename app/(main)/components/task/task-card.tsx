@@ -12,6 +12,7 @@ import Link from "next/link";
 import { format, formatDistanceToNow } from "date-fns";
 import { ja } from "date-fns/locale";
 import { TaskDeleteDialog } from "./task-delete-dialog";
+import { TaskMigrateDialog } from "./task-migrate-dialog";
 
 export const TaskCard = ({ task }: { task: Task }) => {
   const genDateStr = (date: string) => {
@@ -64,6 +65,11 @@ export const TaskCard = ({ task }: { task: Task }) => {
           <TaskDeleteDialog
             props={{ id: task.id, title: task.title, status: task.status }}
           />
+          {task.status === "done" || (
+            <TaskMigrateDialog
+              props={{ id: task.id, title: task.title, status: task.status }}
+            />
+          )}
         </div>
       </CardFooter>
     </Card>
