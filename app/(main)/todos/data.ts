@@ -30,7 +30,7 @@ export const getTodo = cache(async (id: number) => {
     .eq("id", id)
     .single();
 
-  if (error) throw new Error("Get Todo Error");
+  // if (error) throw new Error("Get Todo Error");
 
   return data;
 });
