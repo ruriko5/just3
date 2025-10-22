@@ -30,7 +30,7 @@ export const updateTodo = async (id: number, data: TaskFormData) => {
   const supabase = await createClient();
   const { error } = await supabase
     .from("todos")
-    .update({ ...data })
+    .update({ ...res })
     .eq("id", id);
 
   if (error) throw new Error("Update Todo Error");
