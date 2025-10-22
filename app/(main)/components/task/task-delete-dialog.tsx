@@ -38,10 +38,10 @@ export const TaskDeleteDialog = ({
   const deleteFunc = (deleteTask: DeleteTask, target: string) => {
     deleteTask(id)
       .then(() => {
-        if (pathname.match(`/${status}s`)) {
-          router.refresh();
-        } else if (pathname.startsWith(`/${status}s/`)) {
+        if (pathname.startsWith(`/${status}s/`)) {
           router.push(`/${status}s`);
+        } else if (pathname.match(`/${status}s`)) {
+          router.refresh();
         }
 
         toast.success(`${target} has been deleted`, {
