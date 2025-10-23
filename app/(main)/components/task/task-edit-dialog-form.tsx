@@ -25,7 +25,6 @@ import { DialogClose } from "@radix-ui/react-dialog";
 import { Edit } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
-import { updateTodo } from "../../todos/actions";
 import { toast } from "sonner";
 import { useState } from "react";
 import {
@@ -41,6 +40,8 @@ import {
   InputGroupText,
   InputGroupTextarea,
 } from "@/components/ui/input-group";
+import { updateWanna } from "../../wannas/actions";
+import { updateTodo } from "../../todos/actions";
 
 export const TaskEditDialogForm = ({
   props: { id, title, description, status },
@@ -96,6 +97,8 @@ export const TaskEditDialogForm = ({
 
   const onSubmit = (values: TaskFormData) => {
     switch (status) {
+      case "wanna":
+        return updateTask(updateWanna, values);
       case "todo":
         return updateTask(updateTodo, values);
     }
