@@ -20,6 +20,7 @@ import {
 import { ArrowBigDown } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { migrateToTodo } from "../../wannas/actions";
 import { migrateToDone } from "../../todos/actions";
 
 export const TaskMigrateDialog = ({
@@ -71,6 +72,8 @@ export const TaskMigrateDialog = ({
 
   const handleSubmit = () => {
     switch (status) {
+      case "wanna":
+        return migrateFunc(migrateToTodo);
       case "todo":
         return migrateFunc(migrateToDone);
     }

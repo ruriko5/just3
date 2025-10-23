@@ -18,9 +18,10 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Trash } from "lucide-react";
-import { deleteTodo } from "../../todos/actions";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { deleteWanna } from "../../wannas/actions";
+import { deleteTodo } from "../../todos/actions";
 
 export const TaskDeleteDialog = ({
   props: { id, title, status },
@@ -55,8 +56,11 @@ export const TaskDeleteDialog = ({
 
   const handleDelete = () => {
     switch (status) {
+      case "wanna":
+        return deleteFunc(deleteWanna, "Wanna");
       case "todo":
         return deleteFunc(deleteTodo, "Todo");
+      case "done":
     }
   };
 
