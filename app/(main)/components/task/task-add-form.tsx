@@ -28,11 +28,12 @@ import {
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
-import { useRouter } from "next/navigation";
-import { createTodo } from "../../todos/actions";
+import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { createWanna } from "../../wannas/actions";
+import { createTodo } from "../../todos/actions";
 
-export const TaskAddForm = () => {
+export const TaskAddForm = ({ status }: { status: "wanna" | "todo" }) => {
   const form = useForm<TaskFormData>({
     resolver: zodResolver(taskFormSchema),
     defaultValues: {
@@ -42,20 +43,37 @@ export const TaskAddForm = () => {
     mode: "onChange",
   });
 
-  const router = useRouter();
+  const capitalizedStatus = status.charAt(0).toUpperCase() + status.slice(1);
 
-  const onSubmit = (values: TaskFormData) => {
-    return createTodo(values)
+  const router = useRouter();
+  const pathname = usePathname();
+
+  type CreateTask = (values: TaskFormData) => Promise<void>;
+  const createTask = (createFunc: CreateTask, values: TaskFormData) => {
+    createFunc(values)
       .then(() => {
         form.reset();
-        router.refresh();
-        toast.success("Todo has been created", {
-          description: `${values.title}`,
+
+        if (pathname.match(`/${status}s`)) {
+          router.refresh();
+        }
+
+        toast.success(`${capitalizedStatus} has been created`, {
+          description: values.title,
         });
       })
       .catch((e) => {
         toast.error(`${e}`);
       });
+  };
+
+  const onSubmit = async (values: TaskFormData) => {
+    switch (status) {
+      case "wanna":
+        return createTask(createWanna, values);
+      case "todo":
+        return createTask(createTodo, values);
+    }
   };
 
   return (

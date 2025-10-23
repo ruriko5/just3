@@ -11,7 +11,7 @@ export default async function WannasPage() {
     <main className="flex flex-1 flex-col gap-4 max-w-2xl mx-auto container">
       <h2>Wannas Page</h2>
 
-      <TaskAddForm />
+      <TaskAddForm status="wanna" />
       <TaskList tasks={wannas} className="flex flex-col gap-4" />
     </main>
   );

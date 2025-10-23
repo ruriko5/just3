@@ -11,7 +11,7 @@ export default async function TodosPage() {
     <main className="flex flex-1 flex-col gap-4 max-w-2xl mx-auto container">
       <h2>Todos Page</h2>
 
-      {todos.length >= 3 || <TaskAddForm />}
+      {todos.length >= 3 || <TaskAddForm status="todo" />}
       <TaskList tasks={todos} className="flex flex-col gap-4" />
     </main>
   );
