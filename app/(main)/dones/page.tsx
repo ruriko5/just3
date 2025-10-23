@@ -1,3 +1,16 @@
-export default function DonesPage() {
-  return <main>Dones Page</main>;
+import { verifyUser } from "@/app/auth/data";
+import { getDones } from "./data";
+import { TaskList } from "../components/task/task-list";
+
+export default async function DonesPage() {
+  await verifyUser();
+
+  const dones = await getDones();
+  return (
+    <main className="flex flex-1 flex-col gap-4 max-w-2xl mx-auto container">
+      <h2>Dones Page</h2>
+
+      <TaskList tasks={dones} className="flex flex-col gap-4" />
+    </main>
+  );
 }
