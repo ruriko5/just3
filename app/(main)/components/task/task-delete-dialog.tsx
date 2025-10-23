@@ -22,6 +22,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { deleteWanna } from "../../wannas/actions";
 import { deleteTodo } from "../../todos/actions";
+import { deleteDone } from "../../dones/actions";
 
 export const TaskDeleteDialog = ({
   props: { id, title, status },
@@ -61,6 +62,7 @@ export const TaskDeleteDialog = ({
       case "todo":
         return deleteFunc(deleteTodo, "Todo");
       case "done":
+        return deleteFunc(deleteDone, "Done");
     }
   };
 
