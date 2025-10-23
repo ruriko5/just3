@@ -4,6 +4,7 @@ import { currentUser } from "@/app/auth/data";
 import { TaskFormData, taskFormSchema } from "@/schemas/task-form-schema";
 import { createClient } from "@/supabase/server";
 import { getWanna } from "./data";
+import { isThreeOrMore } from "../todos/data";
 
 export const createWanna = async (data: TaskFormData) => {
   const user = await currentUser();
@@ -50,6 +51,8 @@ export const migrateToTodo = async (id: number) => {
 
   const data = await getWanna(id);
   if (!data) throw new Error("The Wanna Is Not Found");
+
+  if (await isThreeOrMore()) throw new Error("Just3");
 
   const supabase = await createClient();
   const { error } = await supabase.from("todos").insert({
