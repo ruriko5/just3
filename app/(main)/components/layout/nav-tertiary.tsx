@@ -6,6 +6,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { CommandIcon, Moon } from "lucide-react";
+import { ThemeToggleButton } from "./theme-toggle-button";
 
 export const NavTertiary = ({
   ...props
@@ -22,13 +23,7 @@ export const NavTertiary = ({
             </SidebarMenuButton>
           </SidebarMenuItem>
 
-          {/* Togghe theme */}
-          <SidebarMenuItem>
-            <SidebarMenuButton tooltip={"Toggle theme"}>
-              <Moon />
-              <span>Toggle theme</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+          <ThemeToggleButton />
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
