@@ -10,9 +10,9 @@ import { NavMain } from "./nav-main";
 import { navMainItems, navSecondaryItems } from "@/app/(main)/constants";
 import { NavSecondary } from "./nav-secondary";
 import { NavTertiary } from "./nav-tertiary";
-import { NavUser } from "./nav-user";
 
 export const AppSidebar = ({
+  children,
   ...props
 }: React.ComponentProps<typeof Sidebar>) => {
   return (
@@ -27,9 +27,9 @@ export const AppSidebar = ({
         <NavSecondary items={navSecondaryItems} className="mt-auto" />
         <NavTertiary />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser />
-      </SidebarFooter>
+
+      {/*  children is NavUser */}
+      <SidebarFooter>{children}</SidebarFooter>
     </Sidebar>
   );
 };
