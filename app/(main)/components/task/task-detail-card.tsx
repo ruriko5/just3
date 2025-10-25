@@ -29,11 +29,11 @@ export const TaskDetailCard = ({ task }: { task: Task }) => {
 
   const returnCreatedArr = () => {
     switch (task.status) {
-      case "wanna":
+      case "Wanna":
         return [task.wannaCreatedAt];
-      case "todo":
+      case "Todo":
         return [task.wannaCreatedAt, task.todoCreatedAt];
-      case "done":
+      case "Done":
         return [task.wannaCreatedAt, task.todoCreatedAt, task.doneCreatedAt];
     }
   };
@@ -65,7 +65,10 @@ export const TaskDetailCard = ({ task }: { task: Task }) => {
 
       <CardFooter>
         <Button asChild variant="ghost">
-          <Link href={`/${task.status}s`} className="text-sm text-blue-500">
+          <Link
+            href={`/${task.status.toLowerCase()}s`}
+            className="text-sm text-blue-500"
+          >
             <ArrowLeft /> Go back
           </Link>
         </Button>
@@ -74,7 +77,7 @@ export const TaskDetailCard = ({ task }: { task: Task }) => {
           <TaskDeleteDialog
             props={{ id: task.id, title: task.title, status: task.status }}
           />
-          {task.status === "done" || (
+          {task.status === "Done" || (
             <>
               <TaskEditDialogForm
                 props={{

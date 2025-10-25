@@ -11,9 +11,6 @@ export const TaskList = ({
       {tasks.map((task) => (
         <TaskCard key={task.id} task={task} />
       ))}
-      <div className="bg-muted/50 aspect-video rounded-xl" />
-      <div className="bg-muted/50 aspect-video rounded-xl" />
-      <div className="bg-muted/50 aspect-video rounded-xl" />
     </div>
   );
 };

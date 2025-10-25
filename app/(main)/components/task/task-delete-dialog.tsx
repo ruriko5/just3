@@ -30,23 +30,23 @@ export const TaskDeleteDialog = ({
   props: {
     id: number;
     title: string;
-    status: "wanna" | "todo" | "done";
+    status: "Wanna" | "Todo" | "Done";
   };
 }) => {
   const router = useRouter();
   const pathname = usePathname();
 
   type DeleteTask = (id: number) => Promise<void>;
-  const deleteFunc = (deleteTask: DeleteTask, target: string) => {
+  const deleteFunc = (deleteTask: DeleteTask) => {
     deleteTask(id)
       .then(() => {
-        if (pathname.startsWith(`/${status}s/`)) {
-          router.push(`/${status}s`);
-        } else if (pathname.match(`/${status}s`)) {
+        if (pathname.startsWith(`/${status.toLowerCase()}s/`)) {
+          router.push(`/${status.toLowerCase()}s`);
+        } else if (pathname.match(`/${status.toLowerCase()}s`)) {
           router.refresh();
         }
 
-        toast.success(`${target} has been deleted`, {
+        toast.success(`${status} has been deleted`, {
           description: `${title}`,
         });
       })
@@ -57,12 +57,12 @@ export const TaskDeleteDialog = ({
 
   const handleDelete = () => {
     switch (status) {
-      case "wanna":
-        return deleteFunc(deleteWanna, "Wanna");
-      case "todo":
-        return deleteFunc(deleteTodo, "Todo");
-      case "done":
-        return deleteFunc(deleteDone, "Done");
+      case "Wanna":
+        return deleteFunc(deleteWanna);
+      case "Todo":
+        return deleteFunc(deleteTodo);
+      case "Done":
+        return deleteFunc(deleteDone);
     }
   };
 

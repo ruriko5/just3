@@ -29,18 +29,17 @@ export const TaskMigrateDialog = ({
   props: {
     id: number;
     title: string;
-    status: "wanna" | "todo";
+    status: "Wanna" | "Todo";
   };
 }) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const capitalizedStatus = status.charAt(0).toUpperCase() + status.slice(1);
-  const migrateTo = (() => {
+  const nextStatus = (() => {
     switch (status) {
-      case "wanna":
+      case "Wanna":
         return "Todo";
-      case "todo":
+      case "Todo":
         return "Done";
     }
   })();
@@ -49,18 +48,18 @@ export const TaskMigrateDialog = ({
   const migrateFunc = (migrateTask: MigrateTask) => {
     migrateTask(id)
       .then(() => {
-        if (pathname.startsWith(`/${status}s/`)) {
-          router.push(`/${status}s`);
-        } else if (pathname.match(`/${status}s`)) {
+        if (pathname.startsWith(`/${status.toLowerCase()}s/`)) {
+          router.push(`/${status.toLowerCase()}s`);
+        } else if (pathname.match(`/${status.toLowerCase()}s`)) {
           router.refresh();
         }
 
         toast.success(`Successfully`, {
           description: `${title}`,
           action: {
-            label: `Link to ${migrateTo.toLocaleLowerCase()}`,
+            label: `Link to ${nextStatus.toLocaleLowerCase()}`,
             onClick: () => {
-              router.push(`/${migrateTo.toLocaleLowerCase()}s`);
+              router.push(`/${nextStatus.toLocaleLowerCase()}s`);
             },
           },
         });
@@ -72,9 +71,9 @@ export const TaskMigrateDialog = ({
 
   const handleSubmit = () => {
     switch (status) {
-      case "wanna":
+      case "Wanna":
         return migrateFunc(migrateToTodo);
-      case "todo":
+      case "Todo":
         return migrateFunc(migrateToDone);
     }
   };
@@ -86,20 +85,20 @@ export const TaskMigrateDialog = ({
           <AlertDialogTrigger asChild>
             <Button size="icon" variant="ghost">
               <ArrowBigDown />
-              <span className="sr-only">Migrate to {migrateTo}</span>
+              <span className="sr-only">Migrate to {nextStatus}</span>
             </Button>
           </AlertDialogTrigger>
         </TooltipTrigger>
 
         <TooltipContent side="bottom">
-          <p>Migrate to {migrateTo}</p>
+          <p>Migrate to {nextStatus}</p>
         </TooltipContent>
       </Tooltip>
 
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Migrate: {`${capitalizedStatus} -> ${migrateTo}`}
+            Migrate: {`${status} -> ${nextStatus}`}
           </AlertDialogTitle>
           <AlertDialogDescription className="break-all">
             {title}
