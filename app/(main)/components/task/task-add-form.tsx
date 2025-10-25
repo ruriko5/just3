@@ -33,7 +33,7 @@ import { toast } from "sonner";
 import { createWanna } from "../../wannas/actions";
 import { createTodo } from "../../todos/actions";
 
-export const TaskAddForm = ({ status }: { status: "wanna" | "todo" }) => {
+export const TaskAddForm = ({ status }: { status: "Wanna" | "Todo" }) => {
   const form = useForm<TaskFormData>({
     resolver: zodResolver(taskFormSchema),
     defaultValues: {
@@ -42,8 +42,6 @@ export const TaskAddForm = ({ status }: { status: "wanna" | "todo" }) => {
     },
     mode: "onChange",
   });
-
-  const capitalizedStatus = status.charAt(0).toUpperCase() + status.slice(1);
 
   const router = useRouter();
   const pathname = usePathname();
@@ -54,11 +52,11 @@ export const TaskAddForm = ({ status }: { status: "wanna" | "todo" }) => {
       .then(() => {
         form.reset();
 
-        if (pathname.match(`/${status}s`)) {
+        if (pathname.match(`/${status.toLowerCase()}s`)) {
           router.refresh();
         }
 
-        toast.success(`${capitalizedStatus} has been created`, {
+        toast.success(`${status} has been created`, {
           description: values.title,
         });
       })
@@ -69,9 +67,9 @@ export const TaskAddForm = ({ status }: { status: "wanna" | "todo" }) => {
 
   const onSubmit = async (values: TaskFormData) => {
     switch (status) {
-      case "wanna":
+      case "Wanna":
         return createTask(createWanna, values);
-      case "todo":
+      case "Todo":
         return createTask(createTodo, values);
     }
   };

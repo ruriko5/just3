@@ -50,7 +50,7 @@ export const TaskEditDialogForm = ({
     id: number;
     title: string;
     description: string | null;
-    status: "wanna" | "todo";
+    status: "Wanna" | "Todo";
   };
 }) => {
   const form = useForm<TaskFormData>({
@@ -61,8 +61,6 @@ export const TaskEditDialogForm = ({
     },
     mode: "onChange",
   });
-
-  const capitalizedStatus = status.charAt(0).toUpperCase() + status.slice(1);
 
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
@@ -80,13 +78,13 @@ export const TaskEditDialogForm = ({
         });
 
         if (
-          pathname.match(`/${status}s`) ||
-          pathname.startsWith(`/${status}s/`)
+          pathname.match(`/${status.toLowerCase()}s`) ||
+          pathname.startsWith(`/${status.toLowerCase()}s/`)
         ) {
           router.refresh();
         }
 
-        toast.success(`${capitalizedStatus} has been updated`, {
+        toast.success(`${status} has been updated`, {
           description: values.title,
         });
       })
@@ -97,9 +95,9 @@ export const TaskEditDialogForm = ({
 
   const onSubmit = (values: TaskFormData) => {
     switch (status) {
-      case "wanna":
+      case "Wanna":
         return updateTask(updateWanna, values);
-      case "todo":
+      case "Todo":
         return updateTask(updateTodo, values);
     }
   };
@@ -131,7 +129,8 @@ export const TaskEditDialogForm = ({
         <DialogHeader>
           <DialogTitle className="capitalize">Edit {status}</DialogTitle>
           <DialogDescription>
-            Make changes to {status} here. Click save when you&apos;re done.
+            Make changes to {status.toLowerCase()} here. Click save when
+            you&apos;re done.
           </DialogDescription>
         </DialogHeader>
 
