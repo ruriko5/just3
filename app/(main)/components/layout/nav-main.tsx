@@ -5,7 +5,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { type LucideIcon } from "lucide-react";
-import Link from "next/link";
+import { ActiveLink } from "./active-link";
 
 export const NavMain = ({
   items,
@@ -22,10 +22,13 @@ export const NavMain = ({
         {items.map((item) => (
           <SidebarMenuItem key={item.title}>
             <SidebarMenuButton asChild tooltip={item.title}>
-              <Link href={item.link}>
+              <ActiveLink
+                href={item.link}
+                activeClassName="bg-primary/5 dark:bg-primary/10"
+              >
                 <item.icon />
                 <span>{item.title}</span>
-              </Link>
+              </ActiveLink>
             </SidebarMenuButton>
           </SidebarMenuItem>
         ))}
