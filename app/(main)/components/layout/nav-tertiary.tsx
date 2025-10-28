@@ -2,11 +2,9 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { CommandIcon, Moon } from "lucide-react";
 import { ThemeToggleButton } from "./theme-toggle-button";
+import { CommandMenu } from "./command-menu";
 
 export const NavTertiary = ({
   ...props
@@ -15,13 +13,7 @@ export const NavTertiary = ({
     <SidebarGroup {...props}>
       <SidebarGroupContent>
         <SidebarMenu>
-          {/* Command K */}
-          <SidebarMenuItem>
-            <SidebarMenuButton tooltip={"Command K"}>
-              <CommandIcon />
-              <span>Command K</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+          <CommandMenu />
 
           <ThemeToggleButton />
         </SidebarMenu>
