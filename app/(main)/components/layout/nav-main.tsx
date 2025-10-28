@@ -21,7 +21,7 @@ export const NavMain = ({
       <SidebarMenu>
         {items.map((item) => (
           <SidebarMenuItem key={item.title}>
-            <SidebarMenuButton asChild tooltip={item.title} size="lg">
+            <SidebarMenuButton asChild tooltip={item.title} size="lgIcon">
               <ActiveLink
                 href={item.link}
                 activeClassName="bg-primary/5 dark:bg-primary/10"
