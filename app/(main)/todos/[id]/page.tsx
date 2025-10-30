@@ -1,6 +1,11 @@
 import { verifyUser } from "@/app/auth/data";
 import { getTodo } from "../data";
 import { TaskDetailCard } from "../../components/task/task-detail-card";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Todo",
+};
 
 export default async function TodoPage({ params }: PageProps<"/todos/[id]">) {
   await verifyUser();

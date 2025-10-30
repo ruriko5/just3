@@ -2,6 +2,11 @@ import { verifyUser } from "@/app/auth/data";
 import { getTodos } from "./data";
 import { TaskList } from "../components/task/task-list";
 import { TaskAddForm } from "../components/task/task-add-form";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Todos",
+};
 
 export default async function TodosPage() {
   await verifyUser();

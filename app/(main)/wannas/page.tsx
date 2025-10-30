@@ -2,6 +2,11 @@ import { verifyUser } from "@/app/auth/data";
 import { getWannas } from "./data";
 import { TaskAddForm } from "../components/task/task-add-form";
 import { TaskList } from "../components/task/task-list";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Wannas",
+};
 
 export default async function WannasPage() {
   await verifyUser();

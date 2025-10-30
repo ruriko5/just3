@@ -1,6 +1,11 @@
 import { verifyUser } from "@/app/auth/data";
 import { getDone } from "../data";
 import { TaskDetailCard } from "../../components/task/task-detail-card";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Done",
+};
 
 export default async function DonePage({ params }: PageProps<"/dones/[id]">) {
   await verifyUser();

@@ -1,6 +1,11 @@
 import { verifyUser } from "@/app/auth/data";
 import { getWanna } from "../data";
 import { TaskDetailCard } from "../../components/task/task-detail-card";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Wanna",
+};
 
 export default async function WannaPage({ params }: PageProps<"/wannas/[id]">) {
   await verifyUser();
