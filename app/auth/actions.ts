@@ -1,5 +1,6 @@
 "use server";
 
+import { getBaseURL } from "@/lib/get-base-url";
 import { createClient } from "@/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -13,7 +14,7 @@ export const signInWithGithub = async () => {
   const { data } = await supabase.auth.signInWithOAuth({
     provider: "github",
     options: {
-      redirectTo: `${"http://localhost:3000"}/auth/callback`,
+      redirectTo: `${getBaseURL()}/auth/callback`,
     },
   });
 
@@ -27,7 +28,7 @@ export const signInWithGoogle = async () => {
   const { data } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `${"http://localhost:3000"}/auth/callback`,
+      redirectTo: `${getBaseURL()}/auth/callback`,
     },
   });
 

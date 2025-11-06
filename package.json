@@ -10,7 +10,7 @@
     "supabase:restart": "pnpx supabase stop && pnpx supabase start",
     "supabase:gen-types": "pnpx supabase gen types typescript --local --schema public > types/database.ts",
     "supabase:gen-migration": "pnpx supabase db diff | pnpx supabase migration new",
-    "supabase:seed": "pnpx supabase db reset"
+    "supabase:reset": "pnpx supabase db reset"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
